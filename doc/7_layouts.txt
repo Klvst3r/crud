@@ -1,0 +1,83 @@
+7_layouts
+
+Para nuestro proyecto tendremos una sola platilla llamada 
+    /layouts/app.blade.php
+
+Aca tendremos la estructura fundamental de la aplicación de nuestra pagina que sera con bootstrap
+
+Para ello como vamos a utilizar bootstrap iremos a:
+
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Copiamos el contenido:
+
+En el div donde especificamos la etiqueta @yield es donde vamos a indicar que vamos a omontar todo el contenido 
+
+Ahora en nuestra vista create.blade.php
+
+Indicamos que vamos a extender del archivo layout
+    @extends('layouts.app')
+Y a continuaciónmontamos el contenido
+en la sección 
+    @extends('layouts.app')
+
+@section('content')
+
+@endsection
+
+Y todo lo que montemos dentro de estas eqiquetas se desplegara  en nuestra pagina para reutilizar la estructura.
+
+
+Ahora para nuestro form y en la seccion de Bootstrap vamos a:
+https://getbootstrap.com/docs/5.3/components/card/
+
+En el componente card
+Copiamos y lo colocamos dentro de nuestro contenido del formulario
+
+@section('content')
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+    
+    </div>
+  </div>
+
+@endsection
+
+A continuación colocamos los elementos que utilizaremos para nuestro formulario
+<div class="card" style="width: 18rem;">
+  
+    <div class="card-body">
+      <h5 class="card-title">Añadir un libro</h5>
+        <form action="">
+            <div class="form-group">
+                <label for="nombre">Nombre: </label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción: </label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+            </div>
+            <div class="form-group">
+                <label for="autor">Autor: </label>
+                <input type="text" class="form-control" id="autor" name="autor" required>
+            </div>
+            <button type="submit" class="form-control btn btn-success mt-3">Guardar</button>
+        </form>
+    </div>
+  </div>
+
+  No tenemos un meno a si que crearemos uno con Bootstrap
+
+  Si en nuestro formulario queremos que no sea en forma de tarjeta eliminamos la siguiente linea:
+
+  <div class="card" style="width: 18rem;">
+  </div>
+
+  Ahora para que nuestro formulario funcione, }
+
+  Necesitamos una ruta que reciba estos datos.
+
+  La ruta se crea en el controlador

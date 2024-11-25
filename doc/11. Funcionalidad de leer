@@ -1,0 +1,36 @@
+En nuestro controlador vamos a crear una funcionalidad para leer
+
+    public function read(){
+     //Antes de retornar la vista comprobamos funcionamiento
+     $libros = Libro::all();
+
+     dd($libros);
+    }
+
+Vamos ahora a nuestra aplicacion y nos vamos a la ruta de read
+
+http://localhost:8000/libro/read
+
+Illuminate\Database\Eloquent\Collection {#308 ▼ // app/Http/Controllers/LibroController.php:48
+  #items: array:2 [▶]
+  #escapeWhenCastingToString: false
+}
+
+La salida nos arroja un array con resultados de valores y datos correspondientes al array y si nos dirigimos a los atributos, encontraremos los resultados de los datos de la tabla
+
+Esto indica que la aplicaicon ya esta recibidendo los valores de la bd de Mysql ¿, lo que necesitamos ahora es pasar esa inforamcion a la vista
+
+Lo hacemos de la siguiente manera:
+
+  return view('libro.read',compact('libros'));
+
+Con esto ya estamos pasando el objeto que trae todos los datos de la bd
+
+Con esto no hemos tenido la necesidad de crear algo como un aconsulta similar aconsulta
+Select * from libros;
+
+sino que usamos una sola linea para leer todos lo libros y traerlos a la vista.
+
+Ahora en la vista vamos a estrcuturar la vista
+
+read.blade.php

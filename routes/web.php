@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LibroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/libro/create', [LibroController::class, 'create'])->name('libro.create');
+
+Route::post('/libro/store', [LibroController::class, 'store'])->name('libro.store');
+
+Route::get('/libro/read', [LibroController::class, 'read'])->name('libro.read');
+
+//Route::put('/libro/{id}', [LibroController::class, 'update'])->name('libro.update');
+Route::put('/libro/{libro}', [LibroController::class, 'update'])->name('libro.update');

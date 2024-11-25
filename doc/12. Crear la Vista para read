@@ -1,0 +1,69 @@
+12. Crear la Vista para read
+
+Desde esta vista 
+copiamos el codigo inicial donde abrimos y cerramos la seccion
+
+@extends('layouts.app')
+
+@section('content')
+
+
+
+@endsection
+
+
+Ahora necesitamos una tabla nos dirigimos a bootstrap tenemos algo como
+
+https://getbootstrap.com/docs/5.3/content/tables/
+
+<h1>Listado de Libros</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombres</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    
+    </tbody>
+
+Ahora con nuestra esuctura inicial, vamos a utilizar un ciclo repetitivo, iterando el objeto que se esta recibidno, con el conjunto de datos recibidos
+
+Para obtener los datos de nuesyra tabla hacemos de una forma muy elegante
+
+<tbody>
+      <tr>
+        @foreach ($libros as $libro)
+        <th scope="row">$loop->iteration</th>
+        <td>{{ $libro->nombre }}</td>
+        <td>{{ $libro->descripcion }}</td>
+        <td>{{ $libro->autor }}</td>
+        <td></td>
+      </tr>
+      @endforeach
+    
+    </tbody>
+
+
+De esta manera podremos provar nuesra vista de lectura
+
+Podemos observar que ya estamos recibiendo los libros de nuestra Bd, con dos funciones primoridial
+
+Podremos ahora pasar a la actualización 
+
+Para ello nos vamos a la seccion de botones de bootratp para actualizar dentro de la tabla de lectura de datos
+<td><button type="button" class="btn btn-primary">Actualizar</button></td>
+
+
+Veremos que tenos un boton para cada registro para modificar los valores de este registro
+

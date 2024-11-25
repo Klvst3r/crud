@@ -1,0 +1,36 @@
+6_Rutas
+
+Pero para que esta vista pueda funcionar debemos establecer la ruta para que se pueda desplegar
+
+/routes/web.php
+
+Definimos la ruta 
+
+Route::get('/libros/create', [Librocontroller::class, 'create'];
+
+Estamos indicando que desd el navegador especificamos el controlador y el metodo a disparar y tambian vamos acrearle un nombre para poder acceder desde cualquier parte de nuestro poryecto de una forma mas sencilla
+
+Route::get('/libro/create', [LibroController::class, 'create'])->name('libro.create');
+
+Recordemos que la vista libro.create no tiene nada, y simplemente podremos indicarle con el titulo indicando cual es la vista visualizada
+
+<h1>Vista Crear</h1>
+
+En este punto nos marca un error por que no se ha definido el tipo de datos a emplear, por lo que Agregamos el facade
+
+use App\Http\Controllers\ProductController;
+
+Que no hace otra cosa que importar el controlador al que se hara referencia en la ruta
+
+Con esto ya tenemos una vista disponible para poder trabajar.
+
+Ahora armamos la estrcutura de esta parte,
+
+La plantilla que utilizamos sera de Boostrap por lo que utilizaremos un layout
+
+para ello creamos una carpeta llamada   
+    layouts
+
+Aca podremos tener nuestras plantillas de nuesra aplicación
+
+

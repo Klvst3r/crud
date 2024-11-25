@@ -1,0 +1,14 @@
+5. Creación del Cpntrolador
+
+Para la creación del controlador 
+
+    php artisan make:controller LibroController
+
+Dentro de el vamos a poder colocar los datos paa poder gestionar la inforamcicón de las vistas, mostrar las diferentes pagians y funcionalidades, es decir aqui va la logica.
+
+  //Funcionalidad de Create
+    public function create(){
+        return view('libro.create');
+    }
+
+

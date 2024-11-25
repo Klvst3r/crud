@@ -1,0 +1,11 @@
+10. funcion de leer
+ Vamos a nuestra vista que se llama read.blade.php
+
+ Vamos a crear la parte frontal la ruta y la funcionalidad de recuperacion de los valores de la bd
+
+ Para nuesra funcion leer
+ Definiomos la ruta para ller los datos
+
+ Route::get('/libro/read', [LibroController::class, 'read'])->name('libro.read');
+
+ Ya tendriamos la ruta y ahora vamos a nuestro archivos del controller para crear nuestra funion de leer

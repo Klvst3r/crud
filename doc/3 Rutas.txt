@@ -1,0 +1,18 @@
+Para confugurar nuestra ruta debemo ir al archivo de rutas:
+
+
+Pero en la vista tenemos un archivo llamado
+    welcome.blade.php
+
+Crar las vistas y reamos una carpeta llamada
+    libros
+
+Dentro dtendremos todas las vistas a utilizar
+    create.blade.php
+    read.blade.php
+    update.blade.php
+    delete.blade.php
+
+Tenemos las las vistas de nuestro CRUD (Create, Read, Update y Delete)
+
+

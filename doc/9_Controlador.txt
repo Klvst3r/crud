@@ -1,0 +1,54 @@
+Para poder recibir los datos de la ruta se crea en el controlador para que se ejecute, pero tambien en el archivo web.php  para tener la ruta disponible.
+
+Lo primero es crearlo en el archivo de 6_Rutas
+web.php
+del tipo post 
+
+Route::post('/libro/store', [LibroController::class, 'store'])->name('libro.store');
+
+con esta ruta de tipo post disponible ya podemos en el controlador podremos crear la funcionar
+
+De la siguiente manera
+    1. Recibimos los fvalores des de un formulario
+    2. Validamos (Recomendable)
+    3. Creamos el objeto y seteamos los valores por los que se recibieron
+    4. Se almacena la inforamción
+
+Ahora hay que hacer el llamado de nuestra vistade la ruta que necesitamos para que se cargien los datos
+En el archiov de Formulario de creación
+
+
+   <form method= "POST" action="{{ route('libro.store') }}">
+
+Cuando utilizamos formularios en Laravel podemos ejecutar este metodo para poder añadir una capa de seguirdad, ya que estariamos creando un token para evitar ataques de solicitudes en nuestros formularios
+
+@csrf
+
+Con esto Laravel creara un token 
+
+
+Asi que para que nuestro mensaje se muesren debemos añadirlo fuera del formulario de la vista de crear u mediante un condicional
+
+Es decir que si la condicion se cumple vamos a mostrar una alerta de la siguiente manera
+  @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{-- capturamos el valor de la sesion --}}
+            {{ session('success') }}
+        </div>
+        @endif
+
+Con esto podremos probar nuestra aplicacion 
+
+En el controlador finalemente agregamos un redirect
+
+ //Almacenar los valores en la BD
+    $libro->save();
+    return redirect()->back()->with('success','Registro del libro creado con exito');
+
+Procedemos a crear con los siguientes valores
+    Nombre: La Odisea
+    Descripción: Epopeya Griega
+    autor: Homero
+
+
+    Ahora vamos a crear la funcion de leer

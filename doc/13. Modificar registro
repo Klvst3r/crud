@@ -1,0 +1,8 @@
+Para poder darle la funcionalidad al boton del listado de valoresd el atabla vamos al archivo de rutas para definir la siguiente ruta:
+
+Debe ser de tipo esperando un id para cutaulziar 
+
+Route::put('/libro/{id}', [LibroController::class, 'update'])->name('libro.update');
+
+Para que esto funcione debemos ir al controlador para definir la actualizacion
+

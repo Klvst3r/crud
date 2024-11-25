@@ -1,0 +1,109 @@
+11. Funcionalidad de update
+
+Para poder realizar la actualización debemos definir el metodo que hara la acción de actualizar la ifnroamción, y para ello recibira el indice del registro a actualizar con los campos recibidos y sus respectivos valores.
+
+Asi mediante request vamos a recibir los valores que vamos a actualizar y vamos a recibir un libro para actualizar
+  public function update(Request $request, Libro $id){
+
+    }
+
+Podemos hacer uso de validaciones como las que se utilizaron al momento de guardar
+
+La actualización se hace de una forma muy elegante, simplemente hacemos:
+
+ $id->update($request->all());
+
+ con esta linea ya estariamos actualizando y nos apoyaremos de la linea de mensaje hacia el usuario
+
+   return redirect()->back()->with('success','Registro del libro actualizado con exito');}}
+
+   Tenemos la actualización de nuestro libro y ahora desdenuestra aplicación, debemos hacer que nuestro formulario cargue los valores para ralizar la actualización de inforamción
+
+   pero lo vamos a hacer mediante un modal de bootstrap
+   Para ello vamos a buscar un modal
+   https://getbootstrap.com/docs/5.3/components/modal/
+
+   nos copiamos el codigo del modal y lo pegaremos en nuestro archivo actualizar.blade.php
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  Y en la sección vamos a colocar nuestro formulario y nos apoyaremos del formulario de crear para reutilizar el codigo.
+
+
+
+  <div class="modal-body">
+          ...
+        </div>
+
+Cambiando la linea de actualizar y pasando el libro que queremos actualizar
+ <form method= "POST" action="{{ route('libro.update', $id) }}">
+
+ Debajo del token debemos especificar tambien el metodo PUT para que los datos sean recibidos y se puedan actualizar
+
+  @csrf
+                      @method('PUT')
+
+                      Adicional a los campos que estan hay que colocar los datos que ya estan especificados para cada libro y en este caso para cada registro a modificar.
+
+Para ello hacemos en cada valor.
+
+<form method= "POST" action="{{ route('libro.update', $libro) }}">
+                      @csrf
+                      @method('PUT')
+                      <div class="form-group">
+                          <label for="nombre">Nombre: </label>
+                          <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $libro->nombre }}" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="descripcion">Descripción: </label>
+                          <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ $libro->descripcion }}"required>
+                      </div>
+                      <div class="form-group">
+                          <label for="autor">Autor: </label>
+                          <input type="text" class="form-control" id="autor" name="autor" value="{{ $libro->autor }}" required>
+                      </div>
+                      <button type="submit" class="form-control btn btn-success mt-3">Actualizar
+                      </button>
+                  </form>
+
+Con ello estariamos teniendo los valores que se modificarian en la BD
+
+En la siguiente linea indicamos el identificador dellibro a modificar.
+
+<div class="modal fade" id="modal{{ $libro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+Para diferenciar cada uno de los modales en nuestra pagina.
+
+Ahora para poder abrir elmodal debemos hacer elllamado desde el boton de nuestri listado de libros  de la siguente manera:
+
+  <td><button type="button" class="btn btn-primary" data-target="#modal{{ $libro->id }}">Actualizar</button></td>
+
+  Tendremos con esto el llamado a nuestro modal, ahora tdebemos incluir el modal dentro de nuestra vista de listados
+
+  @include('libro.update')
+
+  con include traemos todo el codigo de actualizar en nuestro llear y no mezclamos todo ese codigo dentro de un solo archivo sino de forma separada para su facil mantenimiento y entendimiento.
+
+
+  Recordemos que tenemos un succes al moento de actualizar y deseamos que esto tambien se vea como en el crear asi que copiamos y lo ponemos fuera de la tabla
+  
+

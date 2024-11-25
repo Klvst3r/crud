@@ -1,0 +1,32 @@
+El modelo de nuestro proyecto en laravel 
+
+Asi como el controladror para gestionar los datos del modelo.
+
+Para poder crear estos archiovs se puede crear a mano, aunque ya hemos creado nuestro Modelo con el comando respectivo
+
+    php artisan mahe:model Libro
+
+Dentro del archivo del modelo hace el mapeo de nuestra tabla libros que extiende de models
+
+Quedando nuestro modelo de la siguiente manera:
+    class Libro extends Model
+    {
+        use HasFactory;
+        protected $table = 'Libro';
+    }
+
+
+Pdemos especificar nuestros campos
+
+class Libro extends Model
+{
+    use HasFactory;
+    protected $table = 'Libro';
+    protected $fillable = ['nombre', 'descripcion', 'autor'];
+
+    public $timestamp = true;
+}
+
+La ultima linea nos permitira crear los timestamp de la tabla libro
+
+con esto ya tenemo el modelo, 

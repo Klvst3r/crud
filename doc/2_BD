@@ -1,0 +1,42 @@
+Creamos la BD CRUD
+
+La estructura de la tabla sera la sifuiente
+
+id increments
+nombre_libro varchar 50
+descripcion varchar 50
+autor varchar 50
+
+Para ello creamos nuestro modelo y migración
+
+Se crea el model o y la migracion desde la terminal
+	$ php artisan make:model Libro -m
+
+El parametro -m nos crea la migracion  en plural 
+
+Con esto tenemos nuestro Modelo y la migración
+
+Agregamos los campos de la migración
+
+Se corre la migracion
+	$ php artisan migrate	
+
+Vamos a la Bd y actualizamos para visualizar la información
+ Schema::create('libros', function (Blueprint $table) {
+            $table->id();
+            $table->varchar('nombre', 50);
+            $table->varchar('descripcion', 50);
+            $table->varchar('varchar', 50);
+            $table->timestamps();
+        });
+
+Los datos iniciales de la tabla  podrias ser:
+
+El principito
+Poético, filosófico y conmovedor
+Antoine de Saint Exupery
+
+
+
+Se corre la migracion
+		$ php artisan migrate	

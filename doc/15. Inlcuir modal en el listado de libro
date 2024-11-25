@@ -1,0 +1,30 @@
+Lo hacemos de una forma ya algo antinua de php de la siguiente manera:
+
+en el listado agreegamos:
+
+@include('libro.update')
+
+Asi tambien para agregar el mensaje de actualziación y lo traemos de update.blade.php y lo poemos en read.blade.php
+
+
+
+@if(session('success'))
+                  <div class="alert alert-success" role="alert">
+                      {{-- capturamos el valor de la sesion --}}
+                      {{ session('success') }}
+                  </div>
+                  @endif
+
+
+Y comprobamos el funcionamiento 
+
+Y vemos que al momento de pulsar el boton de actualizar no despliega el modal, asi que para ello vamos a corregir desde el layout las linea inferiores
+
+Corigiendo:
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
