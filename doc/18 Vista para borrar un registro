@@ -1,0 +1,59 @@
+en este caso tenemos nuestra vista para eliminar nuestro registro.
+
+Podremos reutilizar el formulario de crear, todo lo que se tienen ahi
+
+-----
+@extends('layouts.app')
+
+@section('content')
+
+
+  
+    <div class="card-body">
+      <h5 class="card-title">Añadir un libro</h5>
+        <form method= "POST" action="{{ route('libro.destroy') }}">
+            @csrf
+            <div class="form-group">
+                <label for="nombre">Id del libro: </label>
+                <input type="text" class="form-control" id="IdLibro" name="IdLibro" required>
+            </div>
+            
+            <button type="submit" class="form-control btn btn-success mt-3">Guardar</button>
+        </form>
+
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{-- capturamos el valor de la sesion --}}
+            {{ session('success') }}
+        </div>
+        @endif
+    </div>
+
+
+@endsection
+
+------
+
+Pegamos en nuestra vsta de eliiminar
+
+Aunque aca solo necesitamos un valor, la descricion y el autor se pueden borrar
+
+Hay muchas formas de eleiminar registros en un Bd, el ejemplo que tenmos es borarr con el Id del libro 
+
+<input type="text" class="form-control" id="IdLibro" name="IdLibro" required>
+
+Que es el valor que nuestro controlador esta esperando
+
+$Id = $request->input('IdLibro');
+
+Lo que es necesario es que se escriba tal cual para poder ecibirlo de forma correcta
+
+Tenemos entonces el success para cuando se ejecuta con exito, el codigo en nuestro controlador
+
+Asi tambien tenemos el error para cuando no se puede borrar el libro
+
+Registrando un Id que no existe
+
+De esta forma hemos podido eleiminar una aplicación con las cuatro funciones de todo software llamada CRUD.
+
+De esta forma podemos ya a empezar nuestros poryectos hacienco uso de un software con Laravel

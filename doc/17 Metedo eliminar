@@ -1,0 +1,54 @@
+Para eliminar lo primero que tenemos que hacer es agregar en nuestras rutas dos rutas
+
+La primera para poder elimnar el registro
+
+    Route::get('/libro/delete', [LibroController::class, 'delete'])->name('libro.delete');
+
+
+La segunda para eliminar los registros de la BD
+
+    //Eliminar los registros
+    Route::post('/libro/destroy', [LibroController::class, 'destroy'])->name('libro.destroy');
+
+Ahora debemos especificar en el controlador  la ruta para mostrar la vista primero, en este caso eliminar
+
+ public function delete(){
+        //Aquí deberíamos mostrar un formulario para confirmar la eliminación de un libro
+        $libro = Libro::all();
+
+        //Por ahora retornamos un mensaje de confirmación
+        return view('libro.delete', compact('libro'));
+    }
+
+Asi tambien necesitamos la ruta para poder destruir o eliminar nuestro libro 
+
+ public function destroy(Libro $libro){
+    
+    }
+
+Vamos a recibir mediante Reuest los valores provenientes del formulario, en este caso vamos a utilizar un id para borrar los datos.
+
+Esta es una forma de recibir de un input de un formulario, en este caso $idLibro que es el id del formulario en HTML que vamos a desarrollar.
+
+Como ya tenemos el id entonces podemos desarrollar lo sigueinte:
+
+   public function destroy(Request $request){
+        $Id = $request->input('IdLibro');
+        /*Como ya tenemos el Id podemos simpkenete decir qure
+        Mediante eloquent vamos a buscar el ibro mediante el Id especificado
+        */
+        $libro = Libro::find($Id);
+        //Y luego eliminamos el libro
+        // Si encontramos nuestro libro, enonces lo podemos borrar
+        if($libro){
+            $libro->delete();
+            //Redirigimos con mensaje de éxito
+            return redirect()->back()->with('success', 'Registro del libro eliminado con éxito');
+        }else{
+            return redirect()->back()->with('error', 'Registro del libro no encontrado');
+        }
+
+
+Falta comprobar su funcionamiento
+
+Claramente necesitamos una vista para poder eliminar un registr de la Bd

@@ -1,8 +1,7 @@
-<!-- Modal -->
-<!-- <div class="modal fade" id="modal{{ $libro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">  -->
+Para trabajar con el modal colocamos en el archivo update.blade.php lo siguiete:
 
 
-  <div class="modal fade" id="modal{{ $libro->id }}" tabindex="-1" aria-labelledby="modal{{ $libro->id }}Label" aria-hidden="true">  
+<div class="modal fade" id="modal{{ $libro->id }}" tabindex="-1" aria-labelledby="modal{{ $libro->id }}Label" aria-hidden="true">  
   <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,3 +53,27 @@
     </div>
   </div>
   
+
+  Y en el archivo read.blade.php 
+
+  Activamos el boyon que disparara el modal 
+
+  <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ $libro->id }}">Actualizar</button></td>
+        
+  Incluimos todo el codido para actualizar con la siguiente linea
+        @include('libro.update') 
+      </tr>
+      @endforeach
+    
+    </tbody>
+  </table>
+  
+  Y para visualizar el mensaje de la alerta agregamos las siguientes lineas
+  @if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{-- capturamos el valor de la sesion --}}
+        {{ session('success') }}
+    </div>
+ @endif
+
+ 

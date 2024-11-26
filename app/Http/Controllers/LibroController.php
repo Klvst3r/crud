@@ -65,4 +65,36 @@ class LibroController extends Controller
         // Redirigir con mensaje de éxito
         return redirect()->back()->with('success', 'Registro del libro actualizado con éxito');
     }
+
+    public function delete(){
+        //Aquí deberíamos mostrar un formulario para confirmar la eliminación de un libro
+        $libro = Libro::all();
+
+        //Por ahora retornamos un mensaje de confirmación
+        return view('libro.delete', compact('libro'));
+    }
+
+    public function destroy(Request $request){
+        $Id = $request->input('IdLibro');
+        /*Como ya tenemos el Id podemos simpkenete decir qure
+        Mediante eloquent vamos a buscar el ibro mediante el Id especificado
+        */
+        $libro = Libro::find($Id);
+        //Y luego eliminamos el libro
+        // Si encontramos nuestro libro, enonces lo podemos borrar
+        if($libro){
+            $libro->delete();
+            //Redirigimos con mensaje de éxito
+            return redirect()->back()->with('success', 'Registro del libro eliminado con éxito');
+        }else{
+            return redirect()->back()->with('error', 'Registro del libro no encontrado');
+        }
+
+
+
+    
+    }
+
+
+
 }

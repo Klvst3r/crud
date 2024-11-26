@@ -21,8 +21,11 @@
         <td>{{ $libro->nombre }}</td>
         <td>{{ $libro->descripcion }}</td>
         <td>{{ $libro->autor }}</td>
-        <td><button type="button" class="btn btn-primary" data-target="#modal{{ $libro->id }}">Actualizar</button></td>
-        @include('libro.update')
+
+        
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ $libro->id }}">Actualizar</button></td>
+        {{-- Incluimos todo el codido para actualizar con la siguiente linea --}}
+        @include('libro.update') 
       </tr>
       @endforeach
     
